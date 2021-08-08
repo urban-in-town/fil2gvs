@@ -4,4 +4,6 @@
   * 1st paragraph
 * second section
   * 2nd paragraph
+* third section
+  * 3rd paragraph
 
