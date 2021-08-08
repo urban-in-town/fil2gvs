@@ -1,7 +1,7 @@
 # fil2gvs
 
 * first section
-  * 1. paragraph
+  * 1st paragraph
 * second section
-  * 2. paragraph
+  * 2nd paragraph
 
