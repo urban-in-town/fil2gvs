@@ -1,6 +1,6 @@
 * Introduction
   * fil2gvs is a handy utility to create a Global Value Set (gvs) in a format suitable for import into Salesforce.com Cloud (SCL), using the [Ant Migration Tool](https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm) (SCL mig tool)
-  * input is a file in csv format - an example file is part of the distrib. and can be find at resources/Example.txt
+  * input is a file in csv format - an example input file is part of the distrib. archive (/ExampleGvs.txt)
 
 * Prerequisites
   * mandatory - to run fil2gvs & SCL mig tool
@@ -52,4 +52,9 @@
         * the expected output shell read like "Exception in thread "main" java.lang.RuntimeException: Invalid call, ch.menticorp.sfdc.tools.File2GlobalValueSet expects one <file> param!"
         * if it reads like "The system cannot find the path specified." then your java_home setup is incorrect 
 
+* Transform ExampleGvs.txt into ExampleGvs.globalValueSet 
+  * <tbd>
+
+* Deploy ExampleGvs.globalValueSet to a SCL instance
+  * <tbd>
 
