@@ -5,7 +5,7 @@
 * Prerequisites
   * mandatory - to run fil2gvs & SCL mig tool
     * java jdk/jre
-      * you might already have java jre/jdk installed - however "ANT Migration Tool" demands version 11 or higher
+      * you might already have java jre/jdk installed - however SCL mig tool demands version 11 or higher
       * check install., executing "%java_home%\bin\java" -version
       * in order to install: visit [Adopt Open JDK](https://adoptopenjdk.net/) , choose "OpenJDK 11 (LTS), download & install - in the following we will refer to java install. dir. by %java_home%
       * note regarding java_home env. variable: you can set it globally, which will save you some work later, however its inflexible esp. if you have multiple java jre/jdk installed
@@ -49,12 +49,36 @@
       * open %fil2gvs_home%\fil2gvs.bat in an editor (notepad++ etc.), check/change the java_home setup at line 5 and save
       * in command window execute
         * c> "%fil2gvs_home%\fil2gvs"
-        * the expected output shell read like "Exception in thread "main" java.lang.RuntimeException: Invalid call, ch.menticorp.sfdc.tools.File2GlobalValueSet expects one <file> param!"
+        * the expected output shell read like "Exception i n thread "main" java.lang.RuntimeException: Invalid call, ch.menticorp.sfdc.tools.File2GlobalValueSet expects one <file> param!"
         * if it reads like "The system cannot find the path specified." then your java_home setup is incorrect 
 
 * Transform ExampleGvs.txt into ExampleGvs.globalValueSet 
-  * <tbd>
+  * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag ExampleGvs.txt to %fil2gvs_home%
+  * in command window execute
+    * c> cfil2gvs.bat %fil2gvs_home%\ExampleGvs.txt
+  * inspect the result %fil2gvs_home%\ExampleGvs.globalValueSet, a gvs ready for SCL deployment
 
 * Deploy ExampleGvs.globalValueSet to a SCL instance
-  * <tbd>
+  * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag directory _scl-mig-tool-project-template to %fil2gvs_home%
+  * steps to enable our project for SCL deployment
+    * login to any SCL sandbox via SCL/GUI & open in web browser dev tools (<ctrl><Shift>+I), select tab "Application", then in the navigation bar "Storage/Cookies" and there cookie named "sid"
+    * open and edit build.properties in projec dir. as described in the comments esp.
+      * assign property sf.sessionId with the above retrieved sid cookie
+      * assign property sf.serverurl with the SCL server url after login (the same url, under which the sid cookie is placed)
+      * save your changes
+    * to check setup, open command window and execute:
+      * c> cd %fil2gvs_home%\_scl-mig-tool-project-template
+      * c>  %ant_home%\bin\ant retrieveUnpackaged
+      * expected results
+        * expected output: "[sf:retrieve] Finished request ... successfully."
+        * expected mata data download: %fil2gvs_home%\_scl-mig-tool-project-template\retrieveUnpackaged\objects\Account.object
+  * steps to SCL deploy ExampleGvs
+    * copy %fil2gvs_home%\ExampleGvs.globalValueSet to %fil2gvs_home%\_scl-mig-tool-project-template\deployUnpackaged\globalValueSets
+    * delete file %fil2gvs_home%\_scl-mig-tool-project-template\deployUnpackaged\globalValueSets\.gitkeep
+    * to deploy, open command window and execute:
+      * c> cd %fil2gvs_home%\_scl-mig-tool-project-template
+      * c> >%ant_home%\bin\ant deployUnpackaged
+      * expected results
+        * expected output: "[sf:deploy] Finished request ... successfully."
+        * in SCL/GUI go to setup, open GLobal Value Sets (via search topic "pick"), then search and inspect the newly created gvs ExampleGvs 
 
