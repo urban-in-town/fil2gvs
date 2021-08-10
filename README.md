@@ -1,8 +1,8 @@
-* Introduction
+* __Introduction__
   * fil2gvs is a handy utility to create a Global Value Set (gvs) in a format suitable for import into Salesforce.com Cloud (SCL), using the [Ant Migration Tool](https://developer.salesforce.com/docs/atlas.en-us.daas.meta/daas/meta_development.htm) (SCL mig tool)
   * input is a file in csv format - an example input file is part of the distrib. archive (/ExampleGvs.txt)
 
-* Prerequisites
+* __Prerequisites__
   * mandatory - to run fil2gvs & SCL mig tool
     * java jdk/jre
       * you might already have java jre/jdk installed - however SCL mig tool demands version 11 or higher
@@ -31,7 +31,7 @@
           * set JAVA_HOME=C:\Program Files\Java\openjdk-11.0_11.9
       * check install., executing "%mvn_home%\bin\mvn.cmd" -version
 
-* Install
+* __Installation__
   * source release
     * in file explorer, select a dir. where you would like to create a local fil2gvs repo, open git bash and exec. the following commands:
       * $> git clone https://github.com/urban-in-town/fil2gvs.git
@@ -52,13 +52,13 @@
         * the expected output shell read like "Exception i n thread "main" java.lang.RuntimeException: Invalid call, ch.menticorp.sfdc.tools.File2GlobalValueSet expects one <file> param!"
         * if it reads like "The system cannot find the path specified." then your java_home setup is incorrect 
 
-* Transform ExampleGvs.txt into ExampleGvs.globalValueSet 
+* __Transform ExampleGvs.txt into ExampleGvs.globalValueSet__ 
   * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag ExampleGvs.txt to %fil2gvs_home%
   * in command window execute
     * c> cfil2gvs.bat %fil2gvs_home%\ExampleGvs.txt
   * inspect the result %fil2gvs_home%\ExampleGvs.globalValueSet, a gvs ready for SCL deployment
 
-* Deploy ExampleGvs.globalValueSet to a SCL instance
+* __Deploy ExampleGvs.globalValueSet to a SCL__
   * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag directory _scl-mig-tool-project-template to %fil2gvs_home%
   * steps to enable our project for SCL deployment
     * login to any SCL sandbox via SCL/GUI & open in web browser dev tools (&lt;ctrl&gt;&lt;shift&gt;+I), select tab "Application", then in navigation bar "Storage/Cookies" and there cookie named "sid"
