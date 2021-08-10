@@ -20,7 +20,7 @@
       * notes
         * SCL mig tool consists of a bunch of Ant tasks, implemented by the above mentioned jar - copying it to Ant's lib dir. makes it available for any SCL mig project
         * fil2gvs comes with a SCL mig tool project template to give you a headstart
-        * you will usually create many of those SCL mig tool projects - even in the simplest case with a dev/prod SCl instance you will need already two of them ...    
+        * you will usually create a lot of those SCL mig tool projects - even in the simplest case with a dev/prod SCl instance you will need already two of them ...    
   * optional - to build from source
     * git for windows
       * in order to install, visit [Git for Windows](https://github.com/git-for-windows/git/releases/latest) , choose an 64 Bit installer, download and  install

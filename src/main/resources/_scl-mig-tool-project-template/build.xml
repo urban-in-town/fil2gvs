@@ -1,0 +1,37 @@
+<project name="Sample usage of SCL mig tool tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+	<!--   prolog   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->	
+	
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <!-- Setting default value for username, password and session id properties to empty string 
+         so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
+         will be treated literally.
+    -->
+    <condition property="sf.username" value=""> <not> <isset property="sf.username"/> </not> </condition>
+    <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
+    <condition property="sf.sessionId" value=""> <not> <isset property="sf.sessionId"/> </not> </condition>
+	
+	<!-- Defines all the SCL mig tool tasks. Note: we do not specified a class path here and expect
+	     ant-salesforce.jar copied to %ant_home%\lib!
+	-->  
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    </taskdef>
+
+	
+	<!--   targets   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->	
+	
+    <!-- retrieve org's meta data as to target/as specified: retrieveUnpackaged / retrieveUnpackaged/package.xml -->
+    <target name="retrieveUnpackaged">
+      <sf:retrieve 	serverurl="${sf.serverurl}" username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" maxPoll="${sf.maxPoll}" 
+					retrieveTarget="retrieveUnpackaged" unpackaged="retrieveUnpackaged/package.xml"/>
+    </target>
+	
+    <!-- deploy to org s specified in deployUnpackaged/package.xml -->
+    <target name="deployUnpackaged">
+      <sf:deploy 	serverurl="${sf.serverurl}" username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" maxPoll="${sf.maxPoll}" 
+					deployRoot="deployUnpackaged" rollbackOnError="true"/>
+    </target>
+	
+</project>
