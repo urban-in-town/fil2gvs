@@ -61,14 +61,14 @@
 * Deploy ExampleGvs.globalValueSet to a SCL instance
   * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag directory _scl-mig-tool-project-template to %fil2gvs_home%
   * steps to enable our project for SCL deployment
-    * login to any SCL sandbox via SCL/GUI & open in web browser dev tools (<ctrl><Shift>+I), select tab "Application", then in the navigation bar "Storage/Cookies" and there cookie named "sid"
+    * login to any SCL sandbox via SCL/GUI & open in web browser dev tools (&lt;ctrl&gt;&lt;shift&gt;+I), select tab "Application", then in navigation bar "Storage/Cookies" and there cookie named "sid"
     * open and edit build.properties in projec dir. as described in the comments esp.
       * assign property sf.sessionId with the above retrieved sid cookie
       * assign property sf.serverurl with the SCL server url after login (the same url, under which the sid cookie is placed)
       * save your changes
     * to check setup, open command window and execute:
       * c> cd %fil2gvs_home%\_scl-mig-tool-project-template
-      * c>  %ant_home%\bin\ant retrieveUnpackaged
+      * c> %ant_home%\bin\ant retrieveUnpackaged
       * expected results
         * expected output: "[sf:retrieve] Finished request ... successfully."
         * expected mata data download: %fil2gvs_home%\_scl-mig-tool-project-template\retrieveUnpackaged\objects\Account.object
@@ -77,8 +77,8 @@
     * delete file %fil2gvs_home%\_scl-mig-tool-project-template\deployUnpackaged\globalValueSets\.gitkeep
     * to deploy, open command window and execute:
       * c> cd %fil2gvs_home%\_scl-mig-tool-project-template
-      * c> >%ant_home%\bin\ant deployUnpackaged
+      * c> %ant_home%\bin\ant deployUnpackaged
       * expected results
         * expected output: "[sf:deploy] Finished request ... successfully."
-        * in SCL/GUI go to setup, open GLobal Value Sets (via search topic "pick"), then search and inspect the newly created gvs ExampleGvs 
+        * in SCL/GUI go to setup, open Global Value Sets (via search topic "pick"), then search and inspect the newly created gvs ExampleGvs 
 
