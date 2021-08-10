@@ -40,6 +40,16 @@
     * inspect build result, archive target/fil2gvs-1.0-SNAPSHOT.jar
     * for next steps see "binary release" section
   * binary release
-    * <tbd>
+    * create a directory fil2gvs in suitable place and create a env. variable fil2gvs_home pointing to it
+    * put archive fil2gvs-1.0-SNAPSHOT.jar to newly created dir. %fil2gvs_home%
+      * either taking it from source build's directory target
+      * or downloading it from [latest fil2gvs release](https://github.com/urban-in-town/fil2gvs/releases/latest)
+    * check install. as follow
+      * open fil2gvs-1.0-SNAPSHOT.jar in an archive viewer [7zip](https://www.7-zip.org/) or other and drag fil2gvs.bat to %fil2gvs_home%
+      * open %fil2gvs_home%\fil2gvs.bat in an editor (notepad++ etc.), check/change the java_home setup at line 5 and save
+      * in command window execute
+        * c> "%fil2gvs_home%\fil2gvs"
+        * the expected output shell read like "Exception in thread "main" java.lang.RuntimeException: Invalid call, ch.menticorp.sfdc.tools.File2GlobalValueSet expects one <file> param!"
+        * if it reads like "The system cannot find the path specified." then your java_home setup is incorrect 
 
 
